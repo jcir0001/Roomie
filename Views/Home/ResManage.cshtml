@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Arrivals</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
+            <p>OCCUPANCY: @ViewBag.Occupancy</p>
+            <p>REVENUE: @ViewBag.Revenue</p>
+        </div>
+
+        <div class="col-md-6">
+            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
+            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
+            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
+        </div>
+
+    </div>
+</div>
+<div class="jumbotron">
+    <h2>Checkouts</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
+            <p>OCCUPANCY: @ViewBag.Occupancy</p>
+            <p>REVENUE: @ViewBag.Revenue</p>
+        </div>
+
+        <div class="col-md-6">
+            
+            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
+            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
+            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
+        </div>
+
+    </div>
+</div>
+<div class="jumbotron">
+    <h2>In-House</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
+            <p>OCCUPANCY: @ViewBag.Occupancy</p>
+            <p>REVENUE: @ViewBag.Revenue</p>
+        </div>
+
+        <div class="col-md-6">
+            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
+            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
+            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><a class="btn btn-default" href="~/Reservations/Create">NEW RESERVATION &raquo;</a></p>
+    </div>
+</div>
+
+

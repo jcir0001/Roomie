@@ -1,0 +1,106 @@
+﻿@model Roomie.Models.Reservation
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Reservation</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ResId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GuestFName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GuestFName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GuestFName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GuestLName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GuestLName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GuestLName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GuestNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GuestNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GuestNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateCheckIn, new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(m => m.DateCheckIn, "{0:dd/MM/yyyy}", new { @class = "datepicker", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.DateCheckIn)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateCheckOut, new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(m => m.DateCheckOut, "{0:dd/MM/yyyy}", new { @class = "datepicker", autocomplete = "off" })
+        @Html.ValidationMessageFor(model => model.DateCheckOut)
+        <script type="text/javascript">
+
+            $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || Globalize.parseDate(value, "dd/mm/yyyy") !== null;
+            }
+
+        </script>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GuestComments, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GuestComments, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GuestComments, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (@ViewBag.isStaff == true)
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.StaffComments, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StaffComments, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StaffComments, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoomNumber, "RoomNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RoomNumber", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoomNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Roomie.Models.Room>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomType.TypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOccupied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDirty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOOO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomType.TypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOccupied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDirty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOOO)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoomNum }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoomNum }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoomNum })
+        </td>
+    </tr>
+}
+
+</table>

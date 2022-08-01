@@ -1,0 +1,107 @@
+﻿@model Roomie.Models.Reservation
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reservation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.RoomNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType1.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType1.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserProfile.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserProfile.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuestFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuestFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuestLName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuestLName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuestNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuestNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCheckOut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuestComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuestComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StaffComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StaffComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

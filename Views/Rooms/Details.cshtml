@@ -1,0 +1,51 @@
+﻿@model Roomie.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOccupied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOccupied)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDirty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDirty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOOO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOOO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

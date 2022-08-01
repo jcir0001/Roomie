@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Roomie.Models.Reservation>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Room.RoomNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestFName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestLName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCheckOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.RoomNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GuestFName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GuestLName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GuestNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCheckIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCheckOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GuestComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaffComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ResId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ResId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ResId })
+        </td>
+    </tr>
+}
+
+</table>
