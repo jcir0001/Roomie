@@ -20,11 +20,11 @@ namespace Roomie.Models
 
         public int Type { get; set; }
 
-        public byte? IsOccupied { get; set; }
+        public bool IsOccupied { get; set; } = false;
 
-        public byte? IsDirty { get; set; }
+        public bool IsDirty { get; set; } = false;
 
-        public byte? IsOOO { get; set; }
+        public bool IsOOO { get; set; } = false;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }

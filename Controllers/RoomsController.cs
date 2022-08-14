@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Roomie.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Roomie.Controllers
 {
+    [Authorize]
     public class RoomsController : Controller
     {
         private DBModel db = new DBModel();
@@ -128,5 +130,6 @@ namespace Roomie.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

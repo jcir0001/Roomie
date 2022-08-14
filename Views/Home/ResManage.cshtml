@@ -2,59 +2,83 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Res Page";
 }
 
+<div class="text-center">
+    <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
+</div>
+
 <div class="jumbotron">
-    <h2>Arrivals</h2>
+    <h2 class="title">Arrivals</h2>
+        <div class="row" style="justify-content:space-evenly; overflow:auto;">
+            <div class="col-sm-2">Res Id</div>
+            <div class="col-sm-2">First Name</div>
+            <div class="col-sm-2">Last Name</div>
+            <div class="col-sm-2">Guest Number</div>
+            <div class="col-sm-2">Departure</div>
+            <div class="col-sm-2">Room</div>
+        </div>
+        <div class="row">
+            <div class="wrapper" style="overflow:auto; height:200px;">
+                @foreach (var a in ViewBag.arrivals)
+                { 
+                    <div class="row" >
+                        <button class="res-entry" type="button" onclick="location.href='@Url.Action("Details", "Reservations", new { id = a.ResId })'">
+                            <div class="col-sm-2">
+                                @a.ResId
+                            </div>
+                            <div class="col-sm-2">
+                                @a.GuestFName 
+                            </div>
+                            <div class="col-sm-2">
+                                @a.GuestLName
+                            </div>
+                            <div class="col-sm-2">
+                                @a.GuestNumber
+                            </div>
+                            <div class="col-sm-2">
+                                @a.DateCheckOut.ToString("dd/MM/yyyy")
+                            </div>
+                            <div class="col-sm-2">
+                                @a.RoomNumber
+                            </div> 
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+<div class="jumbotron">
+    <h2 class="title">Checkouts</h2>
     <div class="row">
-        <div class="col-md-6">
-            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
-            <p>OCCUPANCY: @ViewBag.Occupancy</p>
-            <p>REVENUE: @ViewBag.Revenue</p>
+        <div class="wrapper" style="overflow:auto; height:200px;">
+            @foreach (var d in ViewBag.departures)
+            {
+                <div class="res-entry">
+                    <div class="col-md-1">
+                        @d.ResId
+                    </div>
+                </div>
+            }
         </div>
-
-        <div class="col-md-6">
-            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
-            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
-            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
-        </div>
-
     </div>
 </div>
 <div class="jumbotron">
-    <h2>Checkouts</h2>
+    <h2 class="title">In-House</h2>
     <div class="row">
-        <div class="col-md-6">
-            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
-            <p>OCCUPANCY: @ViewBag.Occupancy</p>
-            <p>REVENUE: @ViewBag.Revenue</p>
+        <div class="wrapper" style="overflow:auto; height:200px;">
+            @foreach (var ih in ViewBag.inhouse)
+            {
+                <div class="res-entry">
+                    <div class="col-md-1">
+                        @ih.ResId
+                    </div>
+                </div>
+            }
         </div>
-
-        <div class="col-md-6">
-            
-            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
-            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
-            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
-        </div>
-
-    </div>
-</div>
-<div class="jumbotron">
-    <h2>In-House</h2>
-    <div class="row">
-        <div class="col-md-6">
-            <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
-            <p>OCCUPANCY: @ViewBag.Occupancy</p>
-            <p>REVENUE: @ViewBag.Revenue</p>
-        </div>
-
-        <div class="col-md-6">
-            <p>PENDING CHECKOUTS: @ViewBag.PendingCheckout</p>
-            <p>PENDING ARRIVALS: @ViewBag.PendingArrivals</p>
-            <p>INHOUSE GUESTS: @ViewBag.InHouse</p>
-        </div>
-
     </div>
 </div>
 

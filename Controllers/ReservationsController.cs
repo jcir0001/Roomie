@@ -18,6 +18,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Roomie.Controllers
 {
+    [Authorize]
     public class ReservationsController : Controller
     {
         private DBModel db = new DBModel();

@@ -5,9 +5,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h2>Daily Summary</h2>
-    <div class="row">
+<div class="jumbotron" style="height: 250px">
+    <h2 class="title">DAILY SUMMARY</h2>
+    <div class="row" style="padding-bottom:5px">
         <div class="col-md-6">
             <p>@DateTime.Now.ToString("dd MMM yyyy")</p>
             <p>OCCUPANCY: @ViewBag.Occupancy</p>
@@ -25,20 +25,24 @@
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Rooms Management</h2>
-        <p>READY: @ViewBag.RoomsReady</p>
-        <p>DIRTY: @ViewBag.RoomsDirty</p>
-        <p>IN USE: @ViewBag.RoomsOccupied</p>
-        <p>OOO: @ViewBag.RoomsOOO</p>
-        <p>     
-            <a class="btn btn-default" href="~/Home/RoomManage">OPEN &raquo;</a>
-        </p>
+        <div class="minijumbo">
+            <h2 class="title">ROOMS MANAGEMENT</h2>
+            <p>READY: @ViewBag.RoomsReady</p>
+            <p>DIRTY: @ViewBag.RoomsDirty</p>
+            <p>IN USE: @ViewBag.RoomsOccupied</p>
+            <p>OOO: @ViewBag.RoomsOOO</p>
+            <p>
+                <a class="btn btn-default" href="~/Rooms/Index">OPEN &raquo;</a>
+            </p>
+        </div>
     </div>
     <div class="col-md-6">
-        <h2>Reservation Management</h2>
-        <p>READY: @ViewBag.RoomsReady</p>
-        <p>DIRTY: @ViewBag.RoomsDirty</p>
-        <p>IN USE: @ViewBag.RoomsOccupied</p>
-        <p><a class="btn btn-default" href="~/Home/ResManage">OPEN &raquo;</a></p>
+        <div class="minijumbo">
+            <h2 class="title">RESERVATION MANAGEMENT</h2>
+            <p>READY: @ViewBag.RoomsReady</p>
+            <p>DIRTY: @ViewBag.RoomsDirty</p>
+            <p>IN USE: @ViewBag.RoomsOccupied</p>
+            <p style="vertical-align:bottom"><a class="btn btn-default" href="~/Rooms/Index">OPEN &raquo;</a></p>
+        </div>
     </div>
 </div>

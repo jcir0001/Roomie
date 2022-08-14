@@ -54,37 +54,37 @@ namespace Roomie.Models
 
         public int getNumberOOORooms()
         {
-            var roomCount = Rooms.Where(s => s.IsOOO == 1).ToList();
+            var roomCount = Rooms.Where(s => s.IsOOO == true).ToList();
             return roomCount.Count;
         }
 
         public int getNumberOccupiedRooms()
         {
-            var roomCount = Rooms.Where(s => s.IsOccupied == 1 && s.IsOOO == 0).ToList();
+            var roomCount = Rooms.Where(s => s.IsOccupied == true && s.IsOOO == false).ToList();
             return roomCount.Count;
         }
 
         public int getNumberDirtyDirtyRooms()
         {
-            var roomCount = Rooms.Where(s => s.IsOccupied == 0 && s.IsDirty == 1).ToList();
+            var roomCount = Rooms.Where(s => s.IsOccupied == false && s.IsDirty == true).ToList();
             return roomCount.Count;
         }
 
         public int getNumberReadyRooms()
         {
-            return Rooms.Where(r => r.IsDirty != 1 && r.IsOccupied != 1).ToList().Count;
+            return Rooms.Where(r => r.IsDirty != false && r.IsOccupied != false).ToList().Count;
         }
 
         public float getTodayOccupancy()
         {
-            var totalRooms = Rooms.Where(r => r.IsOOO != 1).ToList();
+            var totalRooms = Rooms.Where(r => r.IsOOO != true).ToList();
             var inHouse = Reservations.Where(r => r.DateCheckIn < DateTime.Today && r.DateCheckOut > DateTime.Today).ToList();
             var arrivals = Reservations.Where(r => r.DateCheckIn == DateTime.Today).ToList();
             float occupancy = 0;
 
             if (totalRooms.Count != 0)
             {
-                occupancy = (inHouse.Count + arrivals.Count) / totalRooms.Count;
+                occupancy = ((inHouse.Count + arrivals.Count) / totalRooms.Count) * 100;
             }
 
             return occupancy;
@@ -120,26 +120,26 @@ namespace Roomie.Models
 
         public List<Reservation> getTodaysReservationsPending()
         {
-            return Reservations.Where(r => r.DateCheckIn == DateTime.Today && r.Room.IsOccupied == 0).ToList();
+            return Reservations.Where(r => r.DateCheckIn == DateTime.Today && r.Room == null).ToList();
         }
 
         public List<Reservation> getTodaysReservationsArrived()
         {
-            return Reservations.Where(r => r.DateCheckIn == DateTime.Today && r.Room.IsOccupied == 1).ToList();
+            return Reservations.Where(r => r.DateCheckIn == DateTime.Today && r.Room != null).ToList();
         }
 
         public List<Reservation> getTodaysCheckoutsPending()
         {
-            return Reservations.Where(r => r.DateCheckOut == DateTime.Today && r.Room.IsOccupied == 1).ToList();
+            return Reservations.Where(r => r.DateCheckOut == DateTime.Today && r.Room != null).ToList();
         }
         public List<Reservation> getTodaysCheckoutsDeparted()
         {
-            return Reservations.Where(r => r.DateCheckOut == DateTime.Today && r.Room.IsOccupied == 0).ToList();
+            return Reservations.Where(r => r.DateCheckOut == DateTime.Today && r.Room == null).ToList();
         }
 
         public List<Reservation> getInHouseReservations()
         {
-            return Reservations.Where(r => r.DateCheckIn  < DateTime.Today && r.DateCheckOut > DateTime.Today && r.Room.IsOccupied == 1).ToList();
+            return Reservations.Where(r => r.DateCheckIn  < DateTime.Today && r.DateCheckOut > DateTime.Today && r.Room != null).ToList();
         }
 
     }

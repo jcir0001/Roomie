@@ -8,6 +8,7 @@ using Roomie.Models;
 
 namespace Roomie.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private DBModel db = new DBModel();
@@ -68,32 +69,65 @@ namespace Roomie.Controllers
             return View();
         }
 
-        public ActionResult RoomManage()
-        {
-            var rooms = db.Rooms.ToList();
-
-            return View();
-        }
-
         public ActionResult ResManage()
         {
             var arrivals = db.getTodaysReservationsPending();
             var departures = db.getTodaysCheckoutsPending();
             var inhouse = db.getInHouseReservations();
 
+            ViewBag.text = arrivals.Count.ToString() + inhouse.Count.ToString() + departures.Count.ToString();
+
+            ViewBag.arrivals = arrivals;
+            ViewBag.departures = departures;
+            ViewBag.inhouse = inhouse;
+
             return View();
         }
 
-        /*
-        public ActionResult ResCreate()
+
+
+        // GET: Home/RoomManage
+        public ActionResult RoomManage()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                var rooms = db.Rooms.ToList();
+
+                var userId = User.Identity.GetUserId();
+                var users = db.AspNetUsers.Where(s => s.Id == userId).ToList();
+                AspNetUser user = users[0];
+
+                if (users.Single().IsStaff)
+                {
+                    //Get daily summary params
+                    ViewBag.Occupancy = db.getTodayOccupancy() + "%";
+                    ViewBag.Revenue = "$" + db.getRevenue();
+                    ViewBag.PendingCheckout = db.getTodaysCheckoutsPending().Count;
+                    ViewBag.PendingArrivals = db.getTodaysReservationsPending().Count;
+                    ViewBag.InHouse = db.getInHouseReservations().Count;
+
+                    //Get rooms management params
+                    ViewBag.RoomsDirty = db.getNumberDirtyDirtyRooms();
+                    ViewBag.RoomsOOO = db.getNumberOOORooms();
+                    ViewBag.RoomsReady = db.getNumberReadyRooms();
+                    ViewBag.RoomsOccupied = db.getNumberOccupiedRooms();
+
+                    int departurecount = db.getTodaysCheckoutsDeparted().Count + db.getTodaysCheckoutsPending().Count;
+                    int inhousecount = db.getInHouseReservations().Count;
+
+                    //Get res management params
+                    ViewBag.DeparturesCount = departurecount;
+                    ViewBag.ArrivalsCount = db.getAllTodayArrivals();
+                    ViewBag.Inhouse = inhousecount;
+
+                    return View();
+                }
+            }
+
+            return View("Index");
         }
 
-        public ActionResult ResDetails()
-        {
-            return View();
-        }
-        */
+
+
     }
 }

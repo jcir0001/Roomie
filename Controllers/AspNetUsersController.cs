@@ -10,6 +10,7 @@ using Roomie.Models;
 
 namespace Roomie.Controllers
 {
+    [Authorize]
     public class AspNetUsersController : Controller
     {
         private DBModel db = new DBModel();
